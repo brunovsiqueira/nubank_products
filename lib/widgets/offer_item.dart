@@ -21,6 +21,7 @@ class _OfferItemState extends State<OfferItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      key: Key(widget._offer.id),
       margin: EdgeInsets.all(10),
       child: ExpansionTile(
         title: Row(
@@ -38,7 +39,8 @@ class _OfferItemState extends State<OfferItem> {
                           style: TextStyle(fontSize: 20)),
                       Text(
                           "${NumberFormat.currency().format(widget._offer.price)}",
-                          style: TextStyle(fontSize: 24)),
+                          style: TextStyle(fontSize: 24),
+                          key: Key("price")),
                     ],
                   ),
                 ))
@@ -57,6 +59,7 @@ class _OfferItemState extends State<OfferItem> {
                       height: 50,
                       padding: EdgeInsets.all(5),
                       child: FlatButton(
+                          key: Key(widget._offer.id+'-button'),
                           color: Colors.black,
                           child: FittedBox(
                               child: Text("Purchase",
@@ -101,6 +104,7 @@ class _OfferItemState extends State<OfferItem> {
           builder: (BuildContext context) {
             // retorna um objeto do tipo Dialog
             return AlertDialog(
+              key: Key('${widget._offer.id}-dialog'),
               title: success ? Text("Success") : Text("Error"),
               content: success
                   ? Text(
@@ -110,6 +114,7 @@ class _OfferItemState extends State<OfferItem> {
                       : "Unable to purchase the ${widget._offer.product.name}"),
               actions: <Widget>[
                 FlatButton(
+                  key: Key('${widget._offer.id}-close'),
                   child: Text("Close"),
                   onPressed: () {
                     Navigator.of(context).pop();

@@ -1,14 +1,14 @@
 class Customer {
   String id;
   String name;
-  double balance;
+  num balance;
 
   Customer({this.id, this.name, this.balance});
 
   Customer.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    balance = json['balance'].toDouble();
+    balance = json['balance'];
   }
 
   Map<String, dynamic> toJson() {

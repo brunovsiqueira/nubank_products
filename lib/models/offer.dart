@@ -1,6 +1,6 @@
 class Offer {
   String id;
-  int price;
+  num price;
   Product product;
 
   Offer({this.id, this.price, this.product});
@@ -8,8 +8,7 @@ class Offer {
   Offer.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     price = json['price'];
-    product =
-    json['product'] != null ? new Product.fromJson(json['product']) : null;
+    product = json['product'] != null ? Product.fromJson(json['product']) : null;
   }
 
   Map<String, dynamic> toJson() {

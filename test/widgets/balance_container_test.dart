@@ -22,55 +22,25 @@ void main()  {
 
 
 
-     Widget createTestableWidget(MarketplaceBloc marketplaceBloc) {
+     Widget createTestableWidget(Customer customer) {
        return MaterialApp(
-         home: ChangeNotifierProvider(
-             create: (_) => marketplaceBloc,
-             child: BalanceContainer()
-         ),
+         home: BalanceContainer(customer)
        );
      }
 
 
-      testWidgets('should show name and correct balance when success', (tester) async {
-        MarketplaceBloc marketplaceBloc =  MarketplaceBloc(OffersService());
-        marketplaceBloc.customerError = false;
-        marketplaceBloc.loadingCustomer = false;
-        marketplaceBloc.customer = Customer(id: "asda", name: "Bruno Siqueira", balance: 100);
-        var balanceMock1 = createTestableWidget(marketplaceBloc);
+      testWidgets('should show name and correct balance', (tester) async {
+        var balanceMock1 = createTestableWidget(Customer(id: "asda", name: "Bruno Siqueira", balance: 100));
 
         await tester.pumpWidget(balanceMock1);
 
-        expect(find.text("${Functions.getWelcomeMessage(TimeOfDay.now())}, ${marketplaceBloc.customer.name}"), findsOneWidget);
+        expect(find.text("${Functions.getWelcomeMessage(TimeOfDay.now())}, Bruno Siqueira"), findsOneWidget);
         var balanceFinder = find.byKey(Key("balance"));
 
         expect(balanceFinder, findsOneWidget);
         Text widget = tester.firstWidget(balanceFinder);
         expect(widget.data.contains("100"), true);
       });
-
-     testWidgets('should show error message when error', (tester) async {
-       await initHiveForFlutter();
-       MarketplaceBloc marketplaceBloc =  MarketplaceBloc(OffersService());
-       marketplaceBloc.customerError = true;
-       marketplaceBloc.loadingCustomer = false;
-       var balanceMock1 = createTestableWidget(marketplaceBloc);
-
-       await tester.pumpWidget(balanceMock1);
-
-       expect(find.byKey(Key("error")), findsOneWidget);
-     });
-
-//     testWidgets('should show CircularProgressIndicator before load', (tester) async {
-//       MarketplaceBloc marketplaceBloc =  MarketplaceBloc(OffersService());
-//       marketplaceBloc.customerError = false;
-//       marketplaceBloc.loadingCustomer = true;
-//       var balanceMock1 = createTestableWidget(marketplaceBloc);
-//
-//       await tester.pumpWidget(balanceMock1);
-//
-//       expect(find.byType(CircularProgressIndicator), findsOneWidget);
-//     });
 
 
   });
