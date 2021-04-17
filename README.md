@@ -13,15 +13,15 @@ I have written a bloc (marketplace_bloc), but in the end, I choose not to use it
 
 # Project structure
 
-graphql -> Client, Queries and Mutation for GraphQL requests.
-models -> data models.
-pages -> all the screens.
-services -> API communication.
-utils -> useful functions/classes.
-widgets -> individual widgets used for building the pages.
+graphql -> Client, Queries and Mutation for GraphQL requests. 
+models -> data models.  
+pages -> all the screens.  
+services -> API communication.  
+utils -> useful functions/classes.  
+widgets -> individual widgets used for building the pages.  
 
-test -> unit and widget tests
-test_driver -> integration tests
+test -> unit and widget tests  
+test_driver -> integration tests  
 
 I tried to divide everything I could into individual widgets and put these individual widgets in the "widgets" folder. For example, you can see a Widget that receives a Customer object and build its customer balance and info. 
 
