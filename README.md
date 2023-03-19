@@ -7,7 +7,7 @@ The project was written in Flutter/Dart so it can be run having Flutter/Dart ins
 
 # Why didn't I use bloc?
 Everyone knows that BLoC is one of the favorites flutter patterns and it is widely used by the industry. 
-I tried to write the solution as simples as possible. Taking this into account, there was no need to manually manage state between different widgets and that is the reason why I prefer not to use BLoCs in this project. I have chosen to use the default GraphQLProvider and their Query Widget which already deals with exception and loading.
+I tried to write the solution as simples as possible. Taking this into account, there was no need to manually manage state between different widgets and that is the reason why I prefer not to use BLoCs in this project. I have chosen to use the default GraphQLProvider and their Query Widget which already deals with exception and loading handling.
 
 I have written a bloc (marketplace_bloc), but in the end, I choose not to use it because of these simplicity reasons.
 
